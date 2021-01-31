@@ -15,7 +15,7 @@ class Block {
   static validateStructure = (aBlock: Block): boolean =>
     typeof aBlock.index === "number" &&
     typeof aBlock.hash === "string" &&
-    aBlock.previousHash === "string" &&
+    typeof aBlock.previousHash === "string" &&
     typeof aBlock.timestamp === "number" &&
     typeof aBlock.data === "string";
 
@@ -67,7 +67,7 @@ const createNewBlock = (data: string): Block => {
     data,
     newTimestamp
   );
-
+  addblock(newBlock);
   return newBlock;
 };
 
@@ -97,6 +97,12 @@ const addblock = (candidateBlock: Block): void => {
   if (isBlockValid(candidateBlock, getLatesBlock())) {
     blockchian.push(candidateBlock);
   }
-}
+};
+
+createNewBlock("second block");
+createNewBlock("third block");
+createNewBlock("fourth block");
+
+console.log(blockchian);
 
 export {};
